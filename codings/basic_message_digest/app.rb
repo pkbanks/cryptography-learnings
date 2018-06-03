@@ -22,14 +22,20 @@ msg_verify = gets.chomp
 puts "What is your password?"
 password_verify = gets.chomp
 
-msg_verify = Message.new(msg_verify, password_verify)
-puts "Your encryption is..."
-puts msg_verify.digest
-
-if orig_msg.digest == msg_verify.digest
-  puts "Your message is authentic."
+if orig_msg.verify(orig_msg.digest, msg_verify, password_verify)
+  puts "YES message authentic."
 else
-  puts "Your message is *NOT* authentic."
+  puts "NO message *NOT* authentic."
 end
+
+# msg_verify = Message.new(msg_verify, password_verify)
+# puts "Your encryption is..."
+# puts msg_verify.digest
+
+# if orig_msg.digest == msg_verify.digest
+#   puts "Your message is authentic."
+# else
+#   puts "Your message is *NOT* authentic."
+# end
 
 
